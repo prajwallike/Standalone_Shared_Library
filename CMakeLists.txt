@@ -1,0 +1,19 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.13)
+SET(PROJECT_NAME "TEST" CACHE STRING "" FORCE)
+MARK_AS_ADVANCED(FORCE PROJECT_NAME)
+#PROJECT(${PINNACLE_PROJECT_NAME})
+
+ADD_DEFINITIONS(-fPIC -m64 -pthread -DSYS_V -D__USE_LARGEFILE64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_BSD_SOURCE -D__USE_FIXED_PROTOTYPES__ -D_XOPEN_SOURCE=500 -DWSM_WARNING_DISABLED -DHAVE_FORTRAN -D__EXTENSIONS__)
+SET(CMAKE_C_FLAGS "-Wno-write-strings -std=c99 -frounding-math -fsignaling-nans -fno-unsafe-math-optimizations")
+SET(CMAKE_C_FLAGS_DEBUG "-g -O1")
+SET(CMAKE_C_FLAGS_RELEASE "-Ofast -DNDEBUG")
+LINK_LIBRARIES(m pthread rt)
+SET(ANSIFLAG "-ansi")
+SET(CMAKE_CXX_FLAGS "-Wno-write-strings -Wno-unused-local-typedefs -fpermissive -Wl,--export-dynamic -frounding-math -fsignaling-nans -fno-unsafe-math-optimizations -Wno-long-long")
+SET(CMAKE_CXX_FLAGS_DEBUG "-g -O1")
+SET(CMAKE_CXX_FLAGS_RELEASE "-Ofast -DNDEBUG")
+SET(CMAKE_EXE_LINKER_FLAGS  "-z muldefs")
+
+
+ADD_SUBDIRECTORY(Library)
+ADD_SUBDIRECTORY(TestClass)
